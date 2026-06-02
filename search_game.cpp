@@ -158,9 +158,9 @@ bool checkCoordinates(int startR, int startC, int endR, int endC, char word[], b
 //Category Selection 
 
 void loadCategory(int choice) {
-    char animals[5][10] = {"LION", "TIGER", "BEAR", "WOLF", "GOAT"};
-    char countries[5][10] = {"CHINA", "INDIA", "JAPAN", "ITALY", "SPAIN"};
-    char fruits[5][10] = {"APPLE", "MANGO", "GRAPE", "PEACH", "LEMON"};
+    char animals[5][10] = {"LION", "TIGER", "BEAR", "ZEBRA", "GOAT"};
+    char countries[5][10] = {"CHINA", "INDIA", "JAPAN", "LONDON "SPAIN"};
+    char fruits[5][10] = {"APPLE", "MANGO", "GRAPE", "POMIGRANATE", "LEMON"};
     char tech[5][10] = {"CODE", "DATA", "DISK", "FILE", "BYTE"};
 
     for (int i = 0; i < 5; i++) {
@@ -184,12 +184,12 @@ void playGame(int category) {
 
     while (totalFound < WORD_COUNT) {
         clearScreen();
-        cout << "=== WORD SEARCH GAME ===\n\n";
+        cout << "------- WORD SEARCH GAME------\n\n";
         printGrid();
         printWordList();
 
         cout << "Input Format: StartRow StartCol EndRow EndCol (e.g., 3 5 3 8)\n";
-        cout << "Enter 0 as the first number to quit: ";
+        cout << "To quit the game enter 0 as the first number:";
         
         int sr, sc, er, ec;
         cin >> sr;
@@ -199,7 +199,7 @@ void playGame(int category) {
         sr--; sc--; er--; ec--;
 
         if (!inBounds(sr, sc) || !inBounds(er, ec)) {
-            cout << "\n[!] Coordinates out of range! Press any key to continue...";
+            cout << "\n[!] Coordinates are not in range ! Press any key to continue...";
             cin.ignore(); cin.get();
             continue;
         }
@@ -213,7 +213,7 @@ void playGame(int category) {
                 
                 wordDiscovered[i] = true;
                 totalFound++;
-                cout << "\n[+] Correct! You found \"" << wordsToFind[i] << "\"!\n";
+                cout << "\n[+] You Have Found The Correct Word. \"" << wordsToFind[i] << "\"!\n";
                 matched = true;
                 cin.ignore(); cin.get();
                 break;
@@ -221,7 +221,7 @@ void playGame(int category) {
         }
 
         if (!matched) {
-            cout << "\n[-] No word found at those coordinates. Try again!";
+            cout << "\n[-] No Such Word At These Coordinates. Try again!";
             cin.ignore(); cin.get();
         }
     }
