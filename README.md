@@ -17,9 +17,9 @@ Welcome to Word Search Adventure, an exciting puzzle game developed entirely in 
 * Technology
 * Countries
 
-How to Play
+How you can play this game.
 
-1. Choose a category.
+1. Choose one of the category
 2. Search the puzzle grid for hidden words.
 3. Enter the words you find.
 4. Incorrect entries will display an error message.
