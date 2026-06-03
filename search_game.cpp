@@ -124,36 +124,79 @@ void printWordList() {
 }
 
 // Word Checking Logic
-bool checkCoordinates(int startR, int startC, int endR, int endC, char word[], bool markFound) {
+bool checkCoordinates(int startR, int startC, int endR, int endC,
+                      char word[], bool markFound)
+{
     int wordLen = getLength(word);
+
     int diffR = endR - startR;
     int diffC = endC - startC;
 
-    int stepR = (diffR == 0) ? 0 : (diffR > 0 ? 1 : -1);
-    int stepC = (diffC == 0) ? 0 : (diffC > 0 ? 1 : -1);
+    int stepR;
+    int stepC;
 
-    int absR = diffR < 0 ? -diffR : diffR;
-    int absC = diffC < 0 ? -diffC : diffC;
+    // Determine row direction
+    if (diffR == 0)
+        stepR = 0;
+    else if (diffR > 0)
+        stepR = 1;
+    else
+        stepR = -1;
 
-    if (diffR != 0 && absR != wordLen - 1) return false;
-    if (diffC != 0 && absC != wordLen - 1) return false;
+    // Determine column direction
+    if (diffC == 0)
+        stepC = 0;
+    else if (diffC > 0)
+        stepC = 1;
+    else
+        stepC = -1;
 
-    for (int i = 0; i < wordLen; i++) {
+    // Calculate absolute values
+    int absR;
+    int absC;
+
+    if (diffR < 0)
+        absR = -diffR;
+    else
+        absR = diffR;
+
+    if (diffC < 0)
+        absC = -diffC;
+    else
+        absC = diffC;
+
+    // Check if selected distance matches word length
+    if (diffR != 0 && absR != wordLen - 1)
+        return false;
+
+    if (diffC != 0 && absC != wordLen - 1)
+        return false;
+
+    // Verify every letter
+    for (int i = 0; i < wordLen; i++)
+    {
         int nr = startR + stepR * i;
         int nc = startC + stepC * i;
-        
-        if (!inBounds(nr, nc) || grid[nr][nc] != word[i]) {
+
+        if (!inBounds(nr, nc))
             return false;
-        }
+
+        if (grid[nr][nc] != word[i])
+            return false;
     }
 
-    if (markFound) {
-        for (int i = 0; i < wordLen; i++) {
+    // Mark letters as found
+    if (markFound)
+    {
+        for (int i = 0; i < wordLen; i++)
+        {
             found[startR + stepR * i][startC + stepC * i] = true;
         }
     }
+
     return true;
 }
+ 
 
 //Category Selection 
 
